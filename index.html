@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>重点販売商品選び軽量化ツール</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<header>
+  <div class="title">重点販売商品選び軽量化ツール</div>
+  <div class="sub" id="headerSub">データ: 未読込 / 件数: 0</div>
+</header>
+
+<!-- 大分類スライダー（データ読込後に表示） -->
+<div class="cat-slider-wrap" id="catSlider" style="display:none;">
+  <button class="cat-arrow" id="catPrev" aria-label="前へ">〈</button>
+  <div class="cat-track" id="catTrack" role="tablist" aria-label="大分類"></div>
+  <button class="cat-arrow" id="catNext" aria-label="次へ">〉</button>
+</div>
+
+<main>
+  <!-- View: メイン -->
+  <section class="view active" id="view-main">
+    <!-- 開始カード（開始ボタンのみ・左右中央揃え） -->
+    <section class="card card-transparent" id="secStart">
+      <div class="start-center">
+        <button id="btnCreatePromo" class="btn-start">プロモーションリスト作成</button>
+      </div>
+      <input type="file" id="csvFile" accept=".csv" class="visually-hidden" />
+    </section>
+
+    <!-- 選択エリア（データ読込後に表示） -->
+    <section class="card" id="secSelect" style="display:none;">
+      <div class="groups" id="groupsContainer"></div>
+    </section>
+
+    <!-- プレビュー起動（データ選択後に表示） -->
+    <section class="card" id="secPrint" style="display:none;">
+      <div class="sticky-actions right-align">
+        <!-- 文言を「BRで商品を探す」に変更 -->
+        <button id="btnPreview" class="btn-primary">BRで商品を探す</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- View: プレビュー -->
+  <section class="view" id="view-preview">
+    <section class="card">
+      <!-- 左側に「部門ごとに商品を選ぶ」を追加（左揃え）、右側にボタン群 -->
+      <div class="preview-header row">
+        <div class="left-label">部門ごとに商品を選ぶ</div>
+        <div class="right"></div>
+        <div class="actions right-align" style="gap:10px;">
+          <button class="ghost" id="btnBack">戻る</button>
+          <button class="btn-print-gray" id="btnDoPrint">印刷</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- プレビューのリスト -->
+    <section class="card" id="previewPagesContainer"></section>
+
+    <!-- プレビュー下部の操作行 -->
+    <section class="card card-transparent pv-bottom-toolbar">
+      <div class="row right-align" style="gap:10px; align-items:center;">
+        <button class="ghost" id="pvHideChecked">チェック済みを非表示</button>
+        <span class="small muted">未チェックの商品が無くなるまで実行</span>
+      </div>
+    </section>
+  </section>
+</main>
+
+<script src="./app.js" defer></script>
+</body>
+</html>
